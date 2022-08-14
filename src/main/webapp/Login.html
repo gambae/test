@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>로그인 페이지</h3>
+	
+	<!-- LoginCon으로 id,pw를 보내준다 -->
+	<form action="LoginCon" method="post">
+		<input type="text" name="id"> <br>
+		<input type="password" name="pw"> <br>
+		<input type="submit" value="로그인">
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+회원 정보 테이블 
+
+create table school_member (
+	cls varchar2(50),
+	id varchar2(50) primary key,
+	pw varchar2(50),
+	email varchar2(50),
+	name varchar2(50),
+	birth varchar2(50),
+	tel varchar2(50),
+	insert_date date
+)
+
+
+
+
+
+
+
+
+
+
+
+
+

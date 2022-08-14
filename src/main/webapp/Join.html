@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>회원가입</h1>
+	
+	<!-- 사용자가 적은 cls,id,pw,email,name,birth,tel 값을 가지고 JoinCon으로 이동 -->
+	<form action="JoinCon" method="post">
+	
+		<!--사용자마다 반 이름을 다르게 적을 수 있어서 통일하기 위해 select-->
+		<select name="cls">
+			<option value="Spring_A">Spring_A</option>
+			<option value="Spring_B">Spring_B</option>
+			<option value="JavaScript_A">JavaScript_A</option>
+			<option value="JavaScript_B">JavaScript_B</option>
+			<option value="App">App특화</option>
+			<option value="Visual_Itg">시각지능</option>
+			<option value="Object_Itg">사물지능</option>
+			<option value="Language_Itg">언어지능</option>
+			<option value="Cloud_A">Cloud_A</option>
+			<option value="Cloud_B">Cloud_B</option>
+		</select> <br>
+		
+		아이디 <input type="text" name="id"> <br>
+		비밀번호 <input type="password" name="pw"> <br>
+		이메일 <input type="text" name="email"> <br>
+		이름 <input type="text" name="name"> <br>
+		생년월일 <input type="text" name="birth"> <br>
+		핸드폰번호 <input type="text" name="tel"> <br>
+		<input type="submit" value="회원가입">
+		
+	</form>
+	
+</body>
+</html>
