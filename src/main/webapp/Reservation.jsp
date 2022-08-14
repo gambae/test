@@ -101,6 +101,8 @@
 	<div id="etc_reservation" style="visibility: hidden;">
 		<div style="border: 1px solid black; width: 220px; height: 130px;">
 			<h3>Ailab_2f</h3>
+			
+			sss
 		</div>
 		
 	</div>
