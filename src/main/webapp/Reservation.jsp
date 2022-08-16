@@ -1,3 +1,4 @@
+<%@page import="com.DAO.etc_reservationDAO"%>
 <%@page import="com.DAO.reservationDAO"%>
 <%@page import="com.VO.memberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,13 +15,15 @@
 	memberVO vo = (memberVO) session.getAttribute("vo");
 	// 예약기능만 수행하는 reservationDAO 객체 생성
 	reservationDAO dao = new reservationDAO();
+	
+	etc_reservationDAO etc_dao = new etc_reservationDAO();
 	%>
 	
-	<h1>강의장 연장 신청</h1>
+	<h1>강의장 연장 신청</h1> 
 	<!-- 강의장 버튼을 누르면 강의장예약에관한 정보를 보여준다 -->
 	<button id="button1" onclick="showLecture()">강의장</button>
 	<!-- AI Lab 및 휴게공간 버튼을 누르면 AI Lab 및 휴게공간 예약에관한 정보를 보여준다 -->
-	<button id="button2" onclick="showEtc()">AI Lab 및 휴게공간</button>
+	<button id="button2" onclick="showEtc()">AI Lab 및 휴게공간</button> <a href="Main.jsp">메인페이지</a>
 	<br>
 	<br>
 	
@@ -98,16 +101,33 @@
 	
 	
 	<!-- AI Lab 및 휴게공간 버튼을 누를때만 내용이 보여져야하므로 클릭하지않으면 내용을 숨긴다  -->
-	<div id="etc_reservation" style="visibility: hidden;">
-		<div style="border: 1px solid black; width: 220px; height: 130px;">
-			<h3>Ailab_2f</h3>
+	<div id="etc_reservation" style="visibility: hidden; position:relative; top:-260px;">
+		<form action="#">
+			<input type="date" id="now_date" name="reservation_date" min="" max=""><br><br>
 			
-			수정
-		</div>
-		
+			<div style="border: 1px solid black; width: 220px; height: 130px;">
+				<h3>AI_lab(2F)</h3>
+				<% if (vo != null) { %>
+					<input type="submit" value="예약하기" formaction="AIlab_2F.jsp">
+				<% } else { %>
+					<input type="submit" value="예약하기" onclick="alert('로그인하시오')">
+				<% } %>
+			</div>
+			
+			
+			<div style="border: 1px solid black; width: 220px; height: 130px;">
+				<h3>휴게실(2F)</h3>
+				<% if (vo != null) { %>
+					<input type="submit" value="예약하기" formaction="Retiringroom_2F.jsp">
+				<% } else { %>
+					<input type="submit" value="예약하기" onclick="alert('로그인하시오')">
+				<% } %>
+			</div>
+		</form>
 	</div>
 		
-
+	
+	
 	<script>
 		<!-- 강의장 버튼을 누르면 강의장 예약이 보여지고 그외 예약은 숨겨진다.-->
 		function showLecture() {
@@ -119,6 +139,9 @@
 			document.getElementById("etc_reservation").style.visibility = "visible";
 			document.getElementById("lecture_reservation").style.visibility = "hidden";
 		}
+		
+		var today = new Date();
+		document.getElementById('now_date').valueAsDate= today;
 	</script>
 	
 </body>
