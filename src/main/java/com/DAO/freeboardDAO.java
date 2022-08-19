@@ -55,7 +55,7 @@ public class freeboardDAO {
 		try {
 			connection();
 			
-			String sql = "insert into freeboard values(post_id.nextval,?,?,?,sysdate)";
+			String sql = "insert into freeboard values(post_id.nextval,?,?,?,sysdate,0)";
 			
 			psmt = conn.prepareStatement(sql);
 			
@@ -143,8 +143,9 @@ public class freeboardDAO {
 				String writer = rs.getString(3);
 				String content = rs.getString(4);
 				String post_date = rs.getString(5);
-
-				freeboard_vo = new freeboardVO(post_id,title,writer,content,post_date);
+				int views = rs.getInt(6);
+				
+				freeboard_vo = new freeboardVO(post_id,title,writer,content,post_date,views);
 				list.add(freeboard_vo);
 			}
 		} catch (Exception e) {
@@ -197,7 +198,25 @@ public class freeboardDAO {
 		return cnt;
 	}
 
-	
+	public void viewsUpdate(int views,String post_id) {
+		try {
+			connection();
+			
+			String sql = "update freeboard set views=? where post_id = ?";
+			
+			psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(1,views+1);
+			psmt.setString(2,post_id);
+			
+			cnt = psmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
 
 	
 	

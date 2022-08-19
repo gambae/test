@@ -76,7 +76,7 @@ public class commentDAO {
 		try {
 			connection();
 
-			String sql = "select * from comments where post_id = ?";
+			String sql = "select * from comments where post_id = ? order by comment_date desc";
 			
 			psmt = conn.prepareStatement(sql);
 			

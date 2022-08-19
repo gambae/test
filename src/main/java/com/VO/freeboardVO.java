@@ -7,18 +7,24 @@ public class freeboardVO {
 	private String writer;
 	private String content;
 	private String post_date;
+	private int views;
 	
-	
-	public freeboardVO(String post_id, String title, String writer, String content, String post_date) {
+	public freeboardVO(String post_id, String title, String writer, String content, String post_date,int views) {
 		super();
 		this.post_id = post_id;
 		this.title = title;
 		this.writer = writer;
 		this.content = content;
 		this.post_date = post_date;
+		this.views = views;
 	}
 	
-	
+	public int getViews() {
+		return views;
+	}
+	public void setViews(int views) {
+		this.views = views;
+	}
 	public String getPost_id() {
 		return post_id;
 	}

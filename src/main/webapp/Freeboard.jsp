@@ -46,12 +46,13 @@
 		<% String writer = list.get(i).getWriter(); %>
 		<% String content = list.get(i).getContent(); %>
 		<% String post_date = list.get(i).getPost_date(); %>
+		<% int views = list.get(i).getViews(); %>
 			<tr>
 				<td><%= list.get(i).getPost_id() %></td>
-				<td><a href="View.jsp?post_id=<%=post_id%>&title=<%=title%>&writer=<%=writer%>&content=<%=content%>&post_date=<%=post_date%>"><%= list.get(i).getTitle() %></a> [<%=comment_dao.commentNum(post_id) %>]</td>
+				<td><a href="View.jsp?post_id=<%=post_id%>&title=<%=title%>&writer=<%=writer%>&content=<%=content%>&post_date=<%=post_date%>&views=<%=views%>"><%= list.get(i).getTitle() %></a> [<%=comment_dao.commentNum(post_id) %>]</td>
 				<td><%= list.get(i).getWriter() %></td>
 				<td><%= list.get(i).getPost_date().substring(0,10) %></td>
-				<td>0</td>			
+				<td><%= list.get(i).getViews() %></td>			
 			</tr>
 		<% } %>
 	</table>

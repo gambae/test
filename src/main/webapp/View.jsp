@@ -1,3 +1,4 @@
+<%@page import="com.DAO.freeboardDAO"%>
 <%@page import="com.DAO.commentDAO"%>
 <%@page import="com.VO.commentVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -29,6 +30,7 @@
 		String writer;
 		String content;
 		String post_date;
+		int views;
 		
 		if (request.getParameter("post_id") == null) {
 			post_id = (String)request.getAttribute("post_id");
@@ -60,6 +62,16 @@
 			post_date = request.getParameter("post_date");
 		}
 		
+		if (request.getParameter("views") == null) {
+			views = (int)request.getAttribute("views");
+		} else {
+			views = Integer.parseInt(request.getParameter("views"));
+		}
+		
+		freeboardDAO freeboard_dao = new freeboardDAO();
+		
+		freeboard_dao.viewsUpdate(views,post_id);
+		
 		commentDAO dao = new commentDAO();
 		
 		ArrayList<commentVO> list = dao.commentSelect(post_id);
@@ -73,15 +85,14 @@
 		<tr>
 			<td>작성자<%= writer %></td>
 			<td>작성일자<%= post_date %></td>
-			<td>조회수 0</td>
-			<td>추천수 0</td>
+			<td>조회수 <%=views+1 %></td>
 		</tr>
 		<tr>
 			<td class="content" colspan="4"><%= content %></td>
 		</tr>
 	</table>
 	
-	<form action="commentWriteCon?post_id=<%=post_id%>&title=<%=title%>&writer=<%=writer%>&content=<%=content%>&post_date=<%=post_date%>" method="post">
+	<form action="commentWriteCon?post_id=<%=post_id%>&title=<%=title%>&writer=<%=writer%>&content=<%=content%>&post_date=<%=post_date%>&views=<%=views %>" method="post">
 		<table class="comment_write">
 			<tr>
 				<td class="comment_flex">
@@ -113,8 +124,7 @@
 			</tr>
 		</table>
 	<% } %>
-	
-		
+			
 	
 	<% if (vo != null && vo.getId().equals(writer)) { %>
 		<button onclick="location.href='PostUpdate.jsp?post_id=<%=post_id%>&title=<%=title%>&writer=<%=writer%>&content=<%=content%>&post_date=<%=post_date%>'">글 수정</button>
