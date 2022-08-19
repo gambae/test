@@ -29,6 +29,6 @@
 	<a href="Join.html">회원가입</a>
 	<a href="Reservation.jsp">강의장 연장 신청</a>
 	<a href="#">보충수업</a>
-	<a href="Freeboard.html">자유게시판</a> <br>
+	<a href="freeboardSelectCon">자유게시판</a> <br>
 </body>
 </html>
