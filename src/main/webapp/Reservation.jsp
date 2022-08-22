@@ -41,7 +41,7 @@
 					현재 lecture_reservation테이블에 예약된 Spring_A반 학생의 수를 
 					cntReservation() 메소드를 통해 리턴받는다. 
 				-->
-				현재 신청 인원 : <%= dao.ReservationCount("Spring_A") %>명 <br>
+				현재 신청 인원 : <%= dao.reservationCount("Spring_A") %>명 <br>
 				
 				<!-- 사용자가 퇴실 시간을 선택하는 select태그 -->
 				<select name="time">
@@ -79,7 +79,7 @@
 			<!-- Spring_B반의 예약을 담당하는 div태그 -->
 			<div style="border: 1px solid black; width: 220px; height: 130px;">
 				<h3>Spring_B</h3>
-				현재 신청 인원 : <%= dao.ReservationCount("Spring_B") %>명 <br> <select name="time">
+				현재 신청 인원 : <%= dao.reservationCount("Spring_B") %>명 <br> <select name="time">
 					<option value="19">19:00</option>
 					<option value="20">20:00</option>
 					<option value="21">21:00</option>
@@ -102,27 +102,29 @@
 	
 	<!-- AI Lab 및 휴게공간 버튼을 누를때만 내용이 보여져야하므로 클릭하지않으면 내용을 숨긴다  -->
 	<div id="etc_reservation" style="visibility: hidden; position:relative; top:-260px;">
-		<form action="#">
-			<input type="date" id="now_date" name="reservation_date" min="" max=""><br><br>
+	
+		<form action="#" method="post">
+			<!-- 예약 할 날짜를 입력받는 input 태그 -->
+			<input type="date" id="now_date" name="reservation_date"><br><br>
 			
 			<div style="border: 1px solid black; width: 220px; height: 130px;">
 				<h3>AI_lab(2F)</h3>
+				<!-- 로그인 한 사람만 예약한 날짜를 etc_Reservation.jsp로 전달 -->
 				<% if (vo != null) { %>
-					<input type="submit" value="예약하기" formaction="AIlab_2F.jsp">
+					<input type="submit" value="예약하기" formaction="etc_Reservation.jsp?location=AI_lab(2F)">
 				<% } else { %>
 					<input type="submit" value="예약하기" onclick="alert('로그인하시오')">
 				<% } %>
-			</div>
-			
-			
+			</div>		
+
 			<div style="border: 1px solid black; width: 220px; height: 130px;">
 				<h3>휴게실(2F)</h3>
 				<% if (vo != null) { %>
-					<input type="submit" value="예약하기" formaction="Retiringroom_2F.jsp">
+					<input type="submit" value="예약하기" formaction="etc_Reservation.jsp?location=Retiringroom(2F)">
 				<% } else { %>
 					<input type="submit" value="예약하기" onclick="alert('로그인하시오')">
 				<% } %>
-			</div>
+			</div>		
 		</form>
 	</div>
 		
@@ -139,8 +141,9 @@
 			document.getElementById("etc_reservation").style.visibility = "visible";
 			document.getElementById("lecture_reservation").style.visibility = "hidden";
 		}
-		
+		<!-- 현재 날짜 -->
 		var today = new Date();
+		<!-- input태그의 날짜를 현재날짜를 기본값으로 사용하도록 설정-->
 		document.getElementById('now_date').valueAsDate= today;
 	</script>
 	

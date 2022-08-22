@@ -1,7 +1,9 @@
 package com.VO;
 
+// AI lab 및 휴게공간 예약의 정보를 담당할 클래스
 public class etc_reservationVO {
 	
+	// etc_reservation 테이블 컬럼과 같게 설정
 	private String rsv_location;
 	private String rsv_class;
 	private String rsv_id;
@@ -11,8 +13,7 @@ public class etc_reservationVO {
 	private String rsv_date;
 	
 	
-	public etc_reservationVO(String rsv_location, String rsv_class, String rsv_id, String rsv_name, String rsv_seat,
-			String checkout, String rsv_date) {
+	public etc_reservationVO(String rsv_location, String rsv_class, String rsv_id, String rsv_name, String rsv_seat,String checkout, String rsv_date) {
 		super();
 		this.rsv_location = rsv_location;
 		this.rsv_class = rsv_class;

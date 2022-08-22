@@ -20,6 +20,7 @@
 		String post_date = request.getParameter("post_date");
 	%>
 	
+	<!-- postUpdateCon에 글 아이디,수정 제목,수정 내용을 전달 -->
 	<form action="postUpdateCon?&post_id=<%=post_id%>" method="post">
 		<table>
 			<tr>
@@ -37,9 +38,7 @@
 		</table>
 		
 		<input type="submit" value="수정하기">
-	</form>
-	
-	
+	</form>	
 		
 </body>
 </html>

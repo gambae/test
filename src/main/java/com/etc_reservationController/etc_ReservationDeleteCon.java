@@ -18,16 +18,16 @@ public class etc_ReservationDeleteCon extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		
+		String date = request.getParameter("date");
+		
 		HttpSession session = request.getSession();
 		
-		memberVO vo = (memberVO) session.getAttribute("vo");
-		String date = (String)session.getAttribute("rsv_date");
+		memberVO vo = (memberVO) session.getAttribute("vo");	
 		
 		etc_reservationDAO dao = new etc_reservationDAO();
 		
-		int cnt = dao.ReservationDelete(vo.getId(),date);
-		
-		session.removeAttribute("rsv_date");
+		// 매개변수로 보낸 날짜에 로그인 한 사람의 id로 예약한 정보를 삭제 후 성공,실패여부를 리턴받는다.
+		int cnt = dao.reservationDelete(vo.getId(),date);
 		
 		if (cnt > 0) {
 			response.sendRedirect("Reservation.jsp");

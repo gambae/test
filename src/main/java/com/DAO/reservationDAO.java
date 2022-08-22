@@ -54,15 +54,15 @@ public class reservationDAO {
 	}
 		
 		// 현재 예약한 사람의 수를 알려주는 메소드, 호출할 때 조회할 반을 매개변수로 넘겨준다
-		public int ReservationCount(String cls) {
+		public int reservationCount(String cls) {
 			try {
 				// ★★메소드를 호출하면 전역변수 cnt에 전에 조회한 cnt가 누적되므로 호출할때마다 0으로 초기화
 				cnt = 0;
 				
 				connection();
 				
-				// 매개변수로 받은 반에 해당하는 사람들을 조회
-				String sql = "select * from lecture_reservation where rsv_class=?";
+				// 매개변수로 받은 반에  오늘 날짜에 해당하는 사람들을 조회
+				String sql = "select * from lecture_reservation where rsv_class=? and rsv_date >=trunc(sysdate) and rsv_date < trunc(sysdate)+1";
 				
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1,cls);
@@ -92,8 +92,8 @@ public class reservationDAO {
 				
 				connection();
 				
-				// 입력받은 id가 lecture_reservation에 있는지 검사
-				String sql = "select * from lecture_reservation where rsv_id=?";
+				// 오늘날짜에 입력받은 id로 예약된 정보가 lecture_reservation에 있는지 검사
+				String sql = "select * from lecture_reservation where rsv_id=? and rsv_date >=trunc(sysdate) and rsv_date < trunc(sysdate)+1";
 				
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1,id);
@@ -150,8 +150,8 @@ public class reservationDAO {
 			try {
 				connection();
 				
-				// 해당 반에 있는 모든 예약 정보를 가져온다
-				String sql = "select * from lecture_reservation where rsv_class=?";
+				// 해당 반에 있는 오늘 예약된 모든 정보를 가져온다
+				String sql = "select * from lecture_reservation where rsv_class=? and rsv_date >=trunc(sysdate) and rsv_date < trunc(sysdate)+1";
 				
 				psmt = conn.prepareStatement(sql);
 				psmt.setString(1,cls);

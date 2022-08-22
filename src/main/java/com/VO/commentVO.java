@@ -1,5 +1,6 @@
 package com.VO;
 
+// 댓글의 정보를 담을 클래스
 public class commentVO {
 	
 	private String comment_id;

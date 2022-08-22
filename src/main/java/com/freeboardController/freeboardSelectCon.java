@@ -18,6 +18,7 @@ import com.VO.reservationVO;
 public class freeboardSelectCon extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// num이 null인 경우 기본값은 1페이지
 		int viewPage = 1;
 		
 		String num = request.getParameter("num");
@@ -27,7 +28,8 @@ public class freeboardSelectCon extends HttpServlet {
 		}
 		
 		freeboardDAO dao = new freeboardDAO();
-
+		
+		// viewPage에 맞는 글들의 정보를 리턴받는다.
 		ArrayList<freeboardVO> list = dao.postSelect(viewPage);
 		
 		HttpSession session = request.getSession();
