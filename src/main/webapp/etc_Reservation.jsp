@@ -36,7 +36,7 @@
 		
 		<!-- 로그인 한 아이디와 현재 선택한 날짜에 예약된 정보가 있는지 중복체크 메소드를 통해 확인 -->
 		<% if (dao.repetitionCheck(vo.getId(),date) == 0) { %>
-			<input type="submit" value="예약하기">
+			<input type="submit" value="예약하기" onclick="alert('예약 성공')">
 		<% } else { %>
 			<input type="button" value="예약하기" onclick="alert('이미 예약하셨습니다.')">
 		<% } %>

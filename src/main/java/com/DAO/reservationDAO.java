@@ -27,9 +27,9 @@ public class reservationDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			String db_url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
-			String db_id = "hr";
-			String db_pw = "hr";
+			String db_url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
+			String db_id = "gjai_5_4_0822" ;
+			String db_pw = "smhrd4";
 
 			conn = DriverManager.getConnection(db_url, db_id, db_pw);
 		} catch (Exception e) {
@@ -123,7 +123,7 @@ public class reservationDAO {
 				// lecture_reservation 테이블에 예약 정보 추가
 				// 첫번째 컬럼은 예약 순서를 알려줄 seq이름의 시퀸스 사용
 				// 마지막 컬럼에는 예약한 날짜를 알려줄 sysdate
-				String sql = "insert into lecture_reservation values(seq.nextval,?,?,?,?,sysdate)";
+				String sql = "insert into lecture_reservation values(lecture_reservation_seq.nextval,?,?,?,?,sysdate)";
 				
 				psmt = conn.prepareStatement(sql);
 				

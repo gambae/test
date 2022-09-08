@@ -25,9 +25,9 @@ public class memberDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
-			String db_url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
-			String db_id = "hr" ;
-			String db_pw = "hr";
+			String db_url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
+			String db_id = "gjai_5_4_0822" ;
+			String db_pw = "smhrd4";
 			
 			conn = DriverManager.getConnection(db_url,db_id,db_pw);
 		} catch (Exception e) {
@@ -60,7 +60,7 @@ public class memberDAO {
 			
 			// school_member 테이블에 컬럼은 8개
 			// JoinCon에서 받아온 값은 7개, 마지막 값은 가입한 날짜를 의미하는 sysdate로 대체
-			String sql = "insert into school_member values(?,?,?,?,?,?,?,sysdate)";
+			String sql = "insert into school_member values(?,?,?,?,?,?,?,sysdate,0)";
 			
 			psmt = conn.prepareStatement(sql);
 			
