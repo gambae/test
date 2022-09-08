@@ -14,7 +14,7 @@
 	-->
 	<% memberVO vo = (memberVO)session.getAttribute("vo"); %>
 	
-	<h1>인공지능 사관</h1>
+	<h1>동현 브랜치</h1>
 	
 	<!-- vo라는 세션이 null이 아니라는것은 누군가가 로그인에 성공한것-->
 	<!-- memberVO 객체에 필드값을 가져올때는 getter메소드를 사용  -->
